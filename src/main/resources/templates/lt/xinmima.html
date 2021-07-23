@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+
+<head>
+    <title></title>
+    <style>
+        .box{
+            height: 700px;
+            width: 800px;
+            border:1px solid #D8D8D8;
+            background-color: white;
+            padding: 5px;
+            margin-bottom: 10px;
+            margin-left: 20px;
+            box-sizing: content-box;/* 默认 */
+        }
+        .box1{height: 180px;
+            width: 780px;
+            background-color:#EDF5FC;
+            margin: 50px 10px 50px 10px;
+        }
+
+        .header{
+            width:100%;
+            height:90px;
+            background-color:white;
+            position:relative;
+            vertical-align: middle;
+        }
+        .header img{
+            margin: 10px;
+        }
+        .header span{
+            height: 70px;
+            margin: 18px 20px;
+            position: absolute;
+            font-size: 30px;
+        }
+        .xsx{
+            width: 3px;
+            top: -5px;
+            left: 210px;
+            background: rgb(184, 182, 182);
+            position: absolute;
+        }
+        a{
+            text-decoration:none;
+            padding:20px;
+            color:rgb(84, 84, 252);}
+        h2 :hover{
+            color: #4C9DD9;
+        }
+        #btt1{
+            background:#0066B3;
+            color:white;
+            border:none;
+        }
+        #btt1:hover{
+            background:#4C9DD9;;
+        }
+        #btt2{
+            background:#4C9DD9;
+            color:white;
+            border:none;
+        }
+        #btt2:hover{
+            background:#85c0ec;;
+        }
+        .text::before{
+            content: "*";
+            color: #ff0000;
+            font-size: 25px;
+            position: relative;
+            top: 10px;}
+
+
+    </style>
+    <script>
+
+        function checkUser(){
+            var password = document.getElementById("password").value;
+            var password1 = document.getElementById("password1").value;
+            if(password==password1){
+                return true;
+                document.getElementById()
+            }else {
+                alert("两次输入不一致");
+                return false;
+            }
+        }
+        function GetQueryString(name){
+            var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if(r!=null)return  unescape(r[2]); return null;
+        }
+
+        // 调用方法
+        var ss=GetQueryString("identification")
+        console.log(ss)
+
+    </script>
+</head>
+<body>
+<div class="header" >
+    <img src="/shouye/logo.png" height="70px">
+    <!--        <img th:src="@{../static/logo.png}" height="70px">-->
+    <span class="xsx"></span>
+    <span>蓝桥网上银行</span>
+</div>
+<div class="box">
+    <h2>重置登录密码</h2>
+    <hr style="border:1px solid #D8D8D8;" >
+    <h4>设置新的登录密码</h4>
+    <hr style="border:1px solid #D8D8D8;"/>
+    <form id="myform"  name= "myform" method = 'get'  action = 'updatePassword' onsubmit = "return checkUser();" >
+        <h3><label class="text" >请 输 入 密 码  :</label>
+            <!-- <td width="60" height="40" align="right" class="text">请输入密码  :</td> -->
+            <input type="password" value="" class="text2" name = "password" id = "password" style="width: 325px;height: 38px;border:1px solid #0066B3;margin-left: 42px;"/>
+        </h3>
+
+
+        <h3><label class="text" >再次输入确定密码  :</label>
+            <input type="password" value="" class="text2" name = "password1" id = "password1" style="width: 325px;height: 38px;border:1px solid #0066B3;margin: 10px;"/></h3>
+
+        <input type="submit" value="提交" class="btn2" id="btt1"  style="width: 100px;height: 38px;margin: 10px;margin-left: 190px;" />
+        <a th:href="@{index}"> <input type="button" value="关闭" id="btt2"  style="width: 100px;height: 38px;"></a>
+        <input type="hidden" name="identification"  id="identification"/>
+        <script>
+            document.getElementById("identification").value=ss;
+        </script>
+    </form>
+    <div class="box1">
+        <label>温馨提示：</label>
+        <ul style="list-style-type:initial;color: gray;">
+            <li>标有*的项目为必填。</li>
+            <li>该功能可以帮助您遗忘网银登录密码后重置密码，请重置后牢记登录密码。</li>
+            <li>请您尽量不要在网吧等公共场所使用网上银行。</li>
+            <li>您登录网上银行系统后，如需退出，请点击“退出系统”。</li>
+            <li>如您存有疑问，请拨打95533进行咨询</li>
+        </ul>
+    </div>
+</div>
+
+</body>
+</html>

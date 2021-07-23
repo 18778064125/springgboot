@@ -1,0 +1,420 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" >
+     <title>Title</title>
+     <link href="login.css" rel="stylesheet" type="text/css">
+  <title>Document</title>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
+
+     <script type="text/javascript" >
+         function judge() {
+             var username = document.getElementById("username").value;
+             var password =document.getElementById("password").value;
+
+             if (username==""){
+                 alert("请输入证件号码/用户名！");
+             } else {
+                 if (password==""){
+                     alert("密码长度必须大于等于6位！");
+                 }else{
+                     var x=document.getElementById("password").value.length;
+                     if (x>5){
+                         document.getElementById("form").action="login";
+                         document.getElementById("form").method="post";
+                         return true;
+                     }else {
+                         dd();
+                         return false;
+                     }
+
+                 }
+             }
+
+         }
+     </script>
+  <style>
+      *{
+          padding:0;
+          margin:0;
+      }
+      #wrapper{
+          width:100%;
+          margin:20px auto;
+          position: relative;
+      }
+      .header{
+          width:100%;
+          height:70px;
+          background-color:white;
+          position:relative;
+          vertical-align: middle;
+    
+      }
+      .header img{
+          margin: 10px;
+      }
+      .header span{
+          height: 70px;
+          margin: 18px 20px;
+
+          
+          position: absolute;
+          font-size: 30px;
+      }
+      .content{
+          width:100%;
+          height:60px;
+          
+          background-color:white;
+      }
+      .xsx{
+            
+            width: 3px;
+
+            top: -5px;
+            left: 210px;
+            background: rgb(184, 182, 182);
+            position: absolute;
+        }
+
+      
+      #affiche a{
+        text-decoration:none;
+          padding:40px;
+          color: grey;
+
+      }
+      #affiche a:hover{
+          text-decoration: underline;
+          color:rgb(138, 138, 240)
+      }
+
+
+      .footer{
+        width: 100%;
+        height: 100px;
+        background-color:#0066B3;
+      }
+      
+      /* 子元素（后代）选择器 */
+      /* .outer li 所有子元素*/
+     
+      #loopimg a:first-child img{
+        position: absolute;
+        top:280px;
+        left:120px;
+      }
+      #loopimg a:last-child img{
+        position: absolute;
+        top:280px;
+        right: 120px;
+      }
+      .box{
+          height: 280px;
+          width: 310px;
+          border:1px ;
+          background-color: white;
+          position: absolute;
+          margin-top: 100px; /*上下居中 */
+          margin-left: 1000px;  /*左右居中 */
+      }
+      .box1 {
+          height: 30px;
+          width: 230px;
+          border: 1px;
+          box-shadow: 0px 0px 1px 1px #aaa inset;
+          background-color: white;
+          padding: 5px;
+          margin-bottom: 10px;
+          box-sizing: content-box; /* 默认 */
+          margin-top: 20px;
+          margin-left: 35px;
+      }
+      input{
+          border: 0;
+          outline: none;
+          background-color: rgba(0, 0, 0, 0);
+      }
+      .box2{
+          height: 30px;
+          width: 230px;
+          border:1px ;
+          background-color: white;
+          box-shadow:0px 0px 1px 1px #aaa inset;
+          padding: 5px;
+          margin-bottom: 10px;
+          box-sizing: content-box;/* 默认 */
+          margin-top: 20px;
+          margin-left: 35px;
+      }
+      .dl{
+          height: 40px;
+          width: 240px;
+          background-color: #0165B3;
+          color: white;
+          font-size:20px;
+          cursor: pointer;
+          margin-top: 10px;
+          margin-left: 35px;
+          border: none;
+
+      }
+      .box3{
+          height: 47px;
+          width: 300px;
+          border:1px ;
+          background-color:#F5F5F5;
+          padding: 5px;
+          margin-bottom: 10px;
+          box-sizing: content-box;/* 默认 */
+          margin-top: 25px;
+      }
+      .wjmm{
+          float: left;
+          margin-left: 30px;
+          cursor: pointer;
+
+      }
+      .zcxyh{
+          float: left;
+          margin-left: 95px;
+          cursor: pointer;
+      }
+      .white_content {
+          display: none;
+          padding: 20px;
+          border:2px solid #AAD0F2;
+          background-color: #EDF5FD;
+          z-index:1002;
+          overflow: auto;
+          height: 300px;
+          width: 310px;
+          position: absolute;
+          margin-top: 100px; /*上下居中 */
+          margin-left: 1000px;  /*左右居中 */
+      }
+      .fanhui{
+          border-radius:3px;
+          background-color: #0165B3;
+          color: white;
+          border: none;
+          height: 40px;
+          width: 100px;
+          cursor: pointer;
+          margin-top: 50px;
+          margin-left: 180px;
+      }
+  </style>
+ </head>
+ <body>
+    <div class="header">
+        <img src="/shouye/logo.png" height="70px">
+        <span class="xsx"></span>
+        <span>蓝桥网上银行</span>
+         <!-- <h2>
+        <img  src="1234.png"   height="70px" alt=""  ><ccc></ccc>蓝桥网上银行   </h2> -->
+        
+    </div>
+     <div id="wrapper">
+    <!-- 登录界面 -->
+         <input type="hidden" name="fa" id="fa" th:value="${#request.getAttribute('flag')}">
+         <div id="light" class="white_content">中国建设银行网上银行个人登录提示
+             您输入的信息有误，请尝试用以下方式解决：
+             1、请核对您的证件号码或用户名输入是否正确；
+             2、如您此前用18位身份证号码登录，请尝试用15位重新登录；如您此前用15位身份证号码登录，请尝试用18位重新登录；
+             3、请输入您在柜面开通网上银行服务时，客户签约回执所显示的证件号码；
+             4、如您尚未开通网上银行，请通过我行网站'开通网上银行服务'或至柜面开通网上银行服务。
+             <a href="login.html" ><button class="fanhui">返回登录首页</button></a>
+         </div>
+         <script>
+             (function fa() {
+                 var flag;
+                 flag=document.getElementById("fa").value;
+                 if (flag == "false") {
+                     openDialog();
+                 }
+             }())
+             function openDialog(){
+                 document.getElementById('light').style.display='block';
+                 document.getElementById('fade').style.display='block'
+             }
+         </script>
+         <div class="box">
+             <div  style=" text-align:center;">账户登录</div><hr>
+             <form id="form" onsubmit="return judge()">
+                 <div class="box1">
+                     <img src="/shouye/zz.png" width="20px" height="20px">
+                     <input type="text" name="username" id="username"   placeholder="用户名/证件号码">
+                 </div>
+                 <div class="box2">
+                     <img src="/shouye/zx.png" width="20px" height="20px">
+                     <input type="password" name="password" id="password" placeholder="登录密码">
+                 </div>
+                 <button type="submit"  id="btn" class="dl" >登录</button><br>
+
+             </form>
+
+             <div class="box3">
+                 <a th:href="@{wjmm}"><label class="wjmm">忘记密码</label></a>
+                 <a href="zhuce.html" ><label class="zcxyh">注册新用户</label></a>
+             </div>
+         </div>
+<!-- 登录界面 -->
+    <!-- 轮播图 -->
+    <div id="loopimg">
+        <a href="javascript:void(0)">
+            <img id="lbtn" src="/shouye/l-btn.png" alt="">
+        </a>
+        <a href="">
+            <img src="/shouye/000.PNG" id="looppic" width="100%" height="550px" alt="">
+        </a>
+        <!-- 阻止超链接的默认行为 -->
+        <a href="javascript:void(0)">
+            <img id="rbtn" src="/shouye/r-btn.png" alt="">
+        </a>
+    </div>
+    <!-- span实现下面的矩形，给出宽和高，还有背景色 -->
+</div>
+<script>
+    document.getElementById("rbtn").onclick=f1;
+    document.getElementById("lbtn").onclick=f2;
+
+    document.getElementById("rbtn").onmouseenter=function(){
+        clearInterval(interval);
+    }
+    document.getElementById("rbtn").onmouseleave=function(){
+        interval=setInterval(f1,3000);//每3秒调用1次f1函数
+    }
+
+    document.getElementById("lbtn").onmouseenter=function(){
+        clearInterval(interval);
+    }
+    document.getElementById("lbtn").onmouseleave=function(){
+        interval=setInterval(f1,3000);//每3秒调用1次f1函数
+    }
+    var images=[
+        "/shouye/000.png",
+        "/shouye/1.png",
+        "/shouye/2.png",
+        "/shouye/1010.png",
+        "/shouye/5.jpg"
+    ];
+    var n=0;
+    function f1(event){
+        n++;
+        if(n>4){
+            n=0;
+        }
+        document.getElementById("looppic").src=images[n];
+    }
+    function f2(){
+        n--;
+        if(n<0){
+            n=images.length-1;
+        }
+        document.getElementById("looppic").src=images[n];
+    }
+   var interval=setInterval(f1,3000);//每3秒调用1次f1函数
+</script>
+<div class="content">
+    
+        
+        <h3><img  src="/shouye/4.PNG"   height="30px" alt=""  >
+        <marquee id="affiche" align="left" behavior="scroll" bgcolor="white" direction="left" height="30" width="900" hspace="50" vspace="20" loop="-1" scrollamount="10" scrolldelay="100" onMouseOut="this.start()" onMouseOver="this.stop()">
+        <a href="#">天天都是好天气</a>             <a href="#">天天都是好心情！</a>        <a href="#">2组加油加油加油</a>
+        </marquee>
+        <hr>
+    </h3>
+
+        
+       
+     
+    </div>
+    
+<div class="footer">
+    <div class="clear"></div>
+    <div class="foot_bottom">
+        <div class="footin">
+            <table class="cell" width="100%">
+                <tbody>
+                    <tr>
+                        <td class="ftd1">
+                            <img src="/shouye/666.png" style="width:70px;height:80px;background-color:#fff;float:left;"/>
+                        </td>
+                        <td class="ftd2" style="line-height: 24px;">
+                            <span class="ftxt1">&copy; 版权所有桂电蓝桥银行</span>
+                            <span class="ftxt2">桂ICP备13030780号</span>
+                            <br />
+                            <span class="ftxt1">总行地址：中国桂林电子科技大学</span>
+                            <span class="ftxt2">邮编：12345</span>
+                            <br />
+
+                            <span class="ftxt1">手机网站：m.ccb.com</span>
+                            <span class="ftxt2">客服与投诉热线：55555</span>
+                        </td>
+
+                        <td class="ftd3">
+                            <div  style="width:70px;height:80px;background-color:#fff;float:left;"><img src="/shouye/777.png" style="padding-left:6px;padding-top:3px;width:70px;height:80px;background-color:#fff;float:left;"/>
+                            <span style="color:#83c6ff;font-weight: bold;font-size:11px;padding-left:8px;">微博公众号</span></div>
+                            <div  style="width:70px;height:80px;background-color:#fff;float:left;margin-left:25px;"><img src="/shouye/888.png" style="padding-left:6px;padding-top:3px;width:70px;height:80px;background-color:#fff;float:left;"/>
+                            <span style="color:#83c6ff;font-weight: bold;font-size:11px;padding-left:13px;">微信银行</span></div>
+                            <div  style="width:70px;height:80px;background-color:#fff;float:left;margin-left:25px;"><img src="/shouye/999.png" style="padding-left:6px;padding-top:3px;width:70px;height:80px;background-color:#fff;float:left;"/>
+                            <span style="color:#83c6ff;font-weight: bold;font-size:11px;padding-left:13px;">手机银行</span></div>   
+                        
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ </body>
+ <script>
+
+     // 创建一个div
+     var lunbo=document.createElement("div");
+     // 设置div的id值
+     lunbo.id="lunbo";
+     // 上面按钮点击事件
+     function dd(date){
+         date='请将此文本加长到6个字符或更多';
+         /* 创建div的样式，宽200px,高80px，下面的是css样式居中，
+          * css样式居中具体了解链接：https://blog.csdn.net/A_Bear/article/details/80546181
+          */
+         var style={
+             background:"#FFFFFF",
+             // "#FFFFFF"
+             position:"absolute",
+             zIndex:10,
+             width:"250px",
+             height:"50px",
+             left:"97%",
+             top:"47%",
+             marginLeft:"-200px",
+             marginTop:"-40px",
+             color:"red"
+         }
+         for(var i in style)
+             lunbo.style[i]=style[i];
+         // 当找不到id为lunbo的控件时
+         if(document.getElementById("lunbo")==null){
+             // 在body中添加lunbo控件（lunbo在上面创建的）
+             document.body.appendChild(lunbo);
+             // 显示内容
+             lunbo.innerHTML=date;
+             // 文本居中
+             lunbo.style.textAlign="center";
+             lunbo.style.lineHeight="50px"; // 作用是调节字体行高与div同高，使其保持水平居中
+             // 设置2s后去掉弹出窗
+             setTimeout("document.body.removeChild(lunbo)",2000)
+         }
+     }
+ </script>
+</html>

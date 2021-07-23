@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Document</title>
+  <style>
+
+     .box{
+        height: 950px;
+        width: 1500px;
+        border:1px solid #D8D8D8;
+        background-color: white;
+        padding: 5px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        box-sizing: content-box;/* 默认 */
+
+
+    }
+    .header{
+            width:100%;
+            height:90px;
+            background-color:white;
+            position:relative;
+            vertical-align: middle;
+        }
+        .header img{
+            margin: 10px;
+        }
+        .header span{
+            height: 70px;
+            margin: 18px 20px;
+            position: absolute;
+            font-size: 30px;
+        }
+      
+      ul{
+          width: 1280px;
+          margin: 10px auto 0;/* 居中 */
+      }
+      .first > li{
+          list-style: none;
+          height:35px;
+          width:13.69%;
+          background-color:white;
+          text-align: center;
+          line-height: 30px;
+          position: relative;/* 父元素 */
+          float:left;
+      }
+      li a{
+          color:black;
+          height: 100%;
+          text-decoration: none;
+          display: block;/* 行内元素（内联）、块元素（独占一行，会充满父元素） */
+      }
+      .first>li>a:hover{
+        background-color: #1693F0;
+      }
+      .first>li:hover ul{
+        transition: all .8s;
+        opacity: 1;/* 透明度 */
+
+        visibility: visible;
+        /*display: block;*//* 让元素可见 */
+      }
+      .second{
+        /* 父元素必须是relative，子元素必须是absolute，这样以来，无论我们怎样缩放，元素的位置都不会错位 */
+        position: absolute;
+        top:46px;
+        left:-40px;
+
+        transition: all .8s;
+        opacity: 0;/* 透明度 */
+
+        visibility: hidden;
+        
+        /* display: none;*//* 让元素隐藏 */
+      }
+      .second li{
+        list-style: none;
+        height: 35px;
+        width:200px;
+     
+        background-color:white;
+      }
+      .second>li>a:hover{
+        background-color:#0066B3;
+        color:white;
+      }
+    .boxx1{
+      height: 200px;
+        width: 1200px;
+        margin-top: 66px;
+        /* background-color: #1693F0; */
+       background-image: url(/shouye/11.png);
+/* background: #F7BC42 linear-gradient(to right, #DE5334, #C4311A);
+    transition: background-color .5s;    */
+    }
+    .boxx2{
+       height: 180px;
+       width: 300px;
+       margin-top: 36px;
+      margin-left: 10px;
+       float: left;
+    }
+    .boxx2>li>a{
+      color:white;
+      font-size: x-large;
+    }
+    #bg{
+        width: 130px;
+        height: 100px;
+        margin-top: 60px;
+        margin-left: 20px;
+        float: left;
+      }
+      .xsx{
+            
+            width: 3px;
+
+            top: -5px;
+            left: 210px;
+            background: rgb(184, 182, 182);
+            position: absolute;
+            float: left;
+        }
+        .boxx3{
+       height: 180px;
+       width: 300px;
+       margin-top: 20px;
+      margin-left: 10px;
+  
+      border-left-width:2px;
+      border-left-style:solid;
+      border-right-style:solid;
+      border-left-color:#5E7AA1;
+      border-right-color:#5E7AA1;
+       float: left;
+    }
+    .boxx4{
+       height: 80px;
+       width: 300px;
+       
+       margin-top: 20px;
+      margin-left: 10px;
+       float: left;
+    }
+    .boxx5{
+       height: 80px;
+       width: 300px;
+      
+       margin-top: 20px;
+      margin-left: 10px;
+       float: left;
+    }
+    
+     
+  </style>
+ </head>
+ <body>
+  <div class="header" >
+    <img src="/shouye/logo.png" height="70px">
+    <!--        <img th:src="@{../static/logo.png}" height="70px">-->
+    <span class="xsx"></span>
+    <span>蓝桥网上银行</span>
+</div>
+<div class="box">
+    <ul class="first">
+        <li><a href="#">首页</a></li>
+        <li>
+            <a href="#">我的账户</a>
+            <ul class="second">
+                <li><a href="https://www.baidu.com/?tn=40020637_7_oem_dg">账户查询</a></li>
+                <li><a href="#">活期账户明细申请</a></li>
+                <li><a href="#">银行卡持有证明申请</a></li>
+                <li><a href="#">申请记录查询</a></li>
+                
+            </ul>
+        </li>
+        <li><a href="#">转账汇款</a>
+          <ul class="second">
+            <li><a href="#">转账</a></li>
+            <li><a href="#">活期转定期</a></li>
+            <li><a href="#">定期转活期</a></li>
+            <li><a href="#">预约转账</a></li>
+            <li><a href="#">转账记录查询</a></li>
+           
+        </ul></li>
+
+        <li><a href="#">资产管理</a>
+          <ul class="second">
+            <li><a href="#">资产负债分析</a></li>
+            <li><a href="#">资产负债报告</a></li>
+            <li><a href="#">财务分析报告</a></li>
+            <li><a href="#">资产管理计划</a></li>
+            
+        </ul></li>
+        <li><a href="#">贷款服务</a>
+          <ul class="second">
+            <li><a href="#">贷款服务首页</a></li>
+            <li><a href="#">我的快贷</a></li>
+            <li><a href="#">申请</a></li>
+            <li><a href="#">支用</a></li>
+            <li><a href="#">还款</a></li>
+            <li><a href="#">提前还款</a></li>
+        </ul></li>
+    </ul>
+    <div class="boxx1">
+      <img id="bg" src="/shouye/tt.PNG"  />
+      <div class="boxx2">
+        <li style="list-style-type:none"><a href="#">晚上好，xx先生/女士</a></li>
+        <br>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;">我的积分：--</a></li>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;">手机号码：127****6789</a></li>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;">上次登录： <span th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}" style="color: white"></span></a></li>
+        
+      </div>
+      <div class="boxx3">
+        <img  src="/shouye/rr.png"  style="width: 55px;height: 55px;margin-top:40px;margin-left: 50px;"/>
+        <img  src="/shouye/ff.png"  style="width: 40px;height: 40px;margin-top:-10px;margin-left: 80px;"/>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;color:white;margin-left: 185px;">消息</a></li>
+          <span th:text="${#dates.format(new java.util.Date().getTime(), 'yyyy-MM-dd HH:mm:ss')}" style="color: white"></span>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;color:white;margin-left: 30px;">暂无待办事项</a></li>
+
+       
+      </div>
+      <div class="boxx4">
+        <img  src="/shouye/cc.png"  style="width: 40px;height: 40px;margin-top:20px;margin-left: 10px;float: left;"/>
+        <li style="list-style-type:none"><a href="https://www.baidu.com/?tn=40020637_7_oem_dg" style="font-size: large;color:white;margin-left: 5px;margin-top:30px;float: left;">账户查询</a></li>
+        <img  src="/shouye/zhuang.png"  style="width: 40px;height: 40px;margin-left: 20px;margin-top:20px;float: left;"/>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;color:white;margin-left: 5px;margin-top: 30px;float: left;">建行转账</a></li>
+       
+      </div>
+      <div class="boxx5">
+        <img  src="/shouye/ss.png"  style="width: 40px;height: 40px;margin-top:20px;margin-left: 10px;float: left;"/>
+        <li style="list-style-type:none"><a href="#" style="font-size: large;color:white;margin-left: 5px;margin-top:30px;float: left;">个人设置</a></li>
+        <img  src="/shouye/gd.png"  style="width: 40px;height: 40px;margin-left: 20px;margin-top:20px;float: left;"/>
+        <li style="list-style-type:none"><a href="https://www.baidu.com/?tn=40020637_7_oem_dg" style="font-size: large;color:white;margin-left: 25px;margin-top: 30px;float: left;">更 多..</a></li>
+      </div>
+      <!-- <div class="boxx6"> -->
+        <select>
+          <option value ="volvo">更换背景图</option>
+          <option value ="saab">图1</option>
+          <option value="opel">图2</option>
+          <option value="audi">图3</option>
+        </select>
+      <!-- </div> -->
+    </div>
+
+  </div>
+  
+ </body>
+</html>

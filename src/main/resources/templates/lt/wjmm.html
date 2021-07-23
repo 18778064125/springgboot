@@ -1,0 +1,249 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<body>
+
+<style>
+    .box{
+        height: 950px;
+        width: 1000px;
+        border:1px solid #D8D8D8;
+        background-color: white;
+        padding: 5px;
+        margin-bottom: 10px;
+        margin-left: 20px;
+        box-sizing: content-box;/* 默认 */
+
+
+    }
+    .box1{height: 180px;
+        width: 980px;
+        background-color:#EDF5FC;
+        margin: 30px 10px 50px 10px;
+    }
+    .header{
+        width:100%;
+        height:90px;
+        background-color:white;
+        position:relative;
+        vertical-align: middle;
+
+    }
+    .header img{
+        margin: 10px;
+    }
+    .header span{
+        height: 70px;
+        margin: 18px 20px;
+
+
+        position: absolute;
+        font-size: 30px;
+    }
+    .xsx{
+
+        width: 3px;
+
+        top: -5px;
+        left: 210px;
+        background: rgb(184, 182, 182);
+        position: absolute;
+    }
+    #btn1{
+        background:#0066B3;
+        color:white;
+        border:none;
+    }
+    #btn1:hover{
+        background:#4C9DD9;;
+        border:none;
+    }
+    #btn2{
+        background:#4C9DD9;
+        color:white;
+        border:none;
+    }
+    #btn2:hover{
+        background:#85c0ec;;
+
+    }
+    .text::before{
+        content: "*";
+        color: #ff0000;
+        font-size: 25px;
+        position: relative;
+        top: 10px;}
+
+</style>
+<div class="header">
+    <img src="/shouye/logo.png" height="70px">
+    <!--    <img src="../static/shouye/logo.png" height="70px">-->
+    <span class="xsx"></span>
+    <span>蓝桥网上银行</span>
+    <!-- <h2>
+   <img  src="1234.png"   height="70px" alt=""  ><ccc></ccc>蓝桥网上银行   </h2> -->
+
+</div>
+<div class="box">
+    <h2>重置登录密码</h2>
+    <hr style="border:1px solid #D8D8D8;"/>
+    <p><strong>填写个人基本信息</strong></p>
+    <hr style="border:1px dashed #D8D8D8;"/>
+    <h3>
+        <label class="text" >姓    名 ：</label><input type="text" name="username" id="username" style="width: 371px;height: 38px;border:1px solid #0066B3;margin-left: 29px;" >
+    </h3>
+    <h3>
+        <label >证件类型:</label>
+        <input type="text" name="input" value="身份证" onfocus=this.blur() style="width: 371px;height: 28px;border:1px solid #0066B3; margin-left: 20px;" >
+    </h3>
+    <h3>
+        <label class="text">证件号码：</label><input type="text" name="identification "id="identification" style="width: 371px;height: 38px;border:1px solid #0066B3;">
+    </h3>
+    <hr style="border:1px solid #D8D8D8;"/>
+    <p><strong>填写账户信息</strong></p>
+    <hr style="border:1px dashed #D8D8D8;"/>
+    <h3>
+        <label class="text">银行账号：</label><input type="text" name="bankNumber"id="bankNumber" style="width: 371px;height: 38px;border:1px solid #0066B3;">
+    </h3>
+    <h3>
+        <label class="text">手 机 号 ：</label><input type="text" name="phone" id="phone" style="width: 371px;height: 38px;border:1px solid #0066B3;">
+    </h3>
+    <h3>
+        <label class="text">附 加 码 ：</label>
+    </h3>
+
+
+    <head>
+        <meta charset="UTF-8">
+        <title>图形验证码</title>
+    </head>
+    <body>
+    <canvas id="canvas" width="180px" height="70px" style="margin-left: 105px;"></canvas><br>
+    <div id="v_container" style="width: 150px;height: 20px;"></div>
+    <input type="text" id="code_input" value="" placeholder="请输入验证码" style="width: 371px;height: 35px;border:1px solid #0066B3;margin-left: 100px;"/>
+    <br>
+    <script type="text/javascript">
+
+        function fun(username,identification,bankNumber,phone){
+            var username=document.getElementById('username').value;
+            var identification=document.getElementById('identification').value;
+            var bankNumber=document.getElementById('bankNumber').value;
+            var phone=document.getElementById('phone').value;
+            location.href="/user/updateUser?username="+username+"&identification="+identification+"&bankNumber="+bankNumber+"&phone="+phone
+        }
+
+    </script>
+    <br>
+    <input type="button" value="下一步" id="btn1" onclick="validateCode()" style="width: 100px;height: 38px;margin-left: 100px;" />
+    <a th:href="@{index}"> <input type="button" value="关闭" id="btn2" style="width: 100px;height: 38px;margin-left: 20px;"></a>
+    </body>
+    <!-- <script src="js/gVerify.js"></script> -->
+
+    <script>
+        /////////////////////////图片验证码
+        //生成随机数
+        function randomNum(min,max){
+            return Math.floor(Math.random()*(max-min)+min);
+        }
+        //生成随机颜色RGB分量
+        function randomColor(min,max){
+            var _r = randomNum(min,max);
+            var _g = randomNum(min,max);
+            var _b = randomNum(min,max);
+            return "rgb("+_r+","+_g+","+_b+")";
+        }
+        //先阻止画布默认点击发生的行为再执行drawPic()方法
+        document.getElementById("canvas").onclick = function(e){
+            e.preventDefault();
+            drawPic();
+        };
+
+
+        var _picTxt;
+        function drawPic(){
+            //获取到元素canvas
+            var $canvas = document.getElementById("canvas");
+            var _str = "0123456789";//设置随机数库
+            //var _picTxt = ""; //随机数
+            _picTxt = "";
+            var _num = 4;//4个随机数字
+            var _width = $canvas.width;
+            var _height = $canvas.height;
+            var ctx = $canvas.getContext("2d");//获取 context 对象
+            ctx.textBaseline = "bottom";//文字上下对齐方式--底部对齐
+            ctx.fillStyle = randomColor(180,240);//填充画布颜色
+            ctx.fillRect(0,0,_width,_height);//填充矩形--画画
+            for(var i=0; i<_num; i++){
+                var x = (_width-10)/_num*i+10;
+                var y = randomNum(_height/2,_height);
+                var deg = randomNum(-45,45);
+                var txt = _str[randomNum(0,_str.length)];
+                _picTxt += txt;//获取一个随机数
+                ctx.fillStyle = randomColor(10,100);//填充随机颜色
+                ctx.font = randomNum(16,40)+"px SimHei";//设置随机数大小，字体为SimHei
+                ctx.translate(x,y);//将当前xy坐标作为原始坐标
+                ctx.rotate(deg*Math.PI/180);//旋转随机角度
+                ctx.fillText(txt, 0,0);//绘制填色的文本
+                ctx.rotate(-deg*Math.PI/180);
+                ctx.translate(-x,-y);
+            }
+            for(var i=0; i<_num; i++){
+                //定义笔触颜色
+                ctx.strokeStyle = randomColor(90,180);
+                ctx.beginPath();
+                //随机划线--4条路径
+                ctx.moveTo(randomNum(0,_width), randomNum(0,_height));
+                ctx.lineTo(randomNum(0,_width), randomNum(0,_height));
+                ctx.stroke();
+            }
+            for(var i=0; i<_num*10; i++){
+                ctx.fillStyle = randomColor(0,255);
+                ctx.beginPath();
+                //随机画原，填充颜色
+                ctx.arc(randomNum(0,_width),randomNum(0,_height), 1, 0, 2*Math.PI);
+                ctx.fill();
+            }
+            //return _picTxt;//返回随机数字符串
+            if (canvas)
+            {
+                //canvas.className = "code";
+                canvas.innerHTML = _picTxt;
+            }
+        }
+
+        var PicFlag;
+        function validateCode() {
+            var code_input = document.getElementById("code_input").value;
+            PicFlag=false;
+            if (code_input.length <= 0) {
+                alert("请输入验证码！");
+                PicFlag=false;
+            } else if (code_input.toUpperCase() != _picTxt.toUpperCase()) {
+                alert("验证码输入有误！");
+                drawPic();
+                PicFlag=false;
+            } else {
+                // alert("验证码正确！");
+                PicFlag=true;
+                fun();
+            }
+        }
+        drawPic();
+
+
+    </script>
+    <div class="box1">
+        <label>温馨提示：</label>
+        <ul style="list-style-type:initial;color: gray;">
+            <li>标有*的项目为必填。</li>
+            <li>该功能可以帮助您遗忘网银登录密码后重置密码，请重置后牢记登录密码。</li>
+            <li>请您尽量不要在网吧等公共场所使用网上银行。</li>
+            <li>您登录网上银行系统后，如需退出，请点击“退出系统”。</li>
+            <li>如您存有疑问，请拨打95533进行咨询</li>
+
+        </ul>
+
+    </div>
+
+</div>
+</body>
+</html>

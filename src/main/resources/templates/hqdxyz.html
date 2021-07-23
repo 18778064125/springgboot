@@ -1,0 +1,110 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+
+<style>
+    .box{
+        height: 400px;
+        width: 900px;
+        border:1px solid black;
+        background-color: white;
+        padding: 5px;
+        margin-bottom: 10px;
+        box-sizing: content-box;/* 默认 */
+
+    }
+    .header{
+    width:100%;
+    height:90px;
+    background-color:white;
+    position:relative;
+    vertical-align: middle;
+
+}
+.header img{
+    margin: 10px;
+}
+.header span{
+    height: 70px;
+    margin: 18px 20px;
+
+    
+    position: absolute;
+    font-size: 30px;
+}
+.xsx{
+      
+      width: 3px;
+
+      top: -5px;
+      left: 210px;
+      background: rgb(184, 182, 182);
+      position: absolute;
+  }
+   a{
+        text-decoration:none;
+          padding:20px;
+          color:rgb(84, 84, 252);}
+    h2 :hover{
+        color: #4C9DD9;
+
+    }
+    #btn1{
+        background:#0066B3;
+        color:white;
+        border:none;
+    }
+    #btn1:hover{
+        background:#4C9DD9;;
+
+    }
+    #btn2{
+        background:#4C9DD9;
+        color:white;
+        border:none;
+    }
+    #btn2:hover{
+        background:#85c0ec;;
+
+    }
+
+</style>
+    <div class="header">
+<!--        <img src="../images/1234.png" height="70px">-->
+        <span class="xsx"></span>
+        <span>蓝桥网上银行</span>
+        
+    </div>
+<div class="box">
+
+<h2>重置登录密码</h2>
+    <hr>
+    
+<h4>获取短信验证码</h4>
+    <hr/>
+<h4><label>账户取款密码：</label><input type="text" name="mima" id="mima"></h4>
+<!--    <script type="text/javascript">-->
+<!--        function fun1(bankNumber,qukuanmima){-->
+<!--            var qukuanmima=document.getElementById('qukuanmima').value;-->
+
+<!--            location.href="/demo/user/updateUser.do?bankNumber="+bankNumber+"&qukuanmima="+qukuanmima-->
+<!--        }-->
+<!--    </script>-->
+<h4><label>短信验证码：</label><input type="text" name="yanzhengma" id="yanzhengma"></h4>
+
+<h5>我行已向您的手机发送短信动态口令，请及时输入。如未收到动态口令，请点击重新获取。</h5>
+
+<a href="#">重新获取</a>
+
+<h2>
+
+
+    <a th:href="@{xinmima}"> <input type="submit" id="btn1" value="下一步"  ></a>
+
+    <a th:href="@{app}"> <input type="submit" id="btn2" value="上一步"  ></a>
+
+</h2>
+
+
+</div>
+</body>
+</html>

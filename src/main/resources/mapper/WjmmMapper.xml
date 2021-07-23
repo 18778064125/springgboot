@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.guet.springboot.mapper.WjmmMapper">
+    <update id="updatePassword">
+        update user set password=#{password} where identification=#{identification}
+    </update>
+    <select id="updateUser"  resultType="user1" parameterType="string">
+        SELECT uname,identification,bankNumber,phone FROM user WHERE uname=#{value}
+    </select>
+
+
+<!--    <update id="updateUser" parameterType="string">-->
+<!--        UPDATE  user SET PASSWORD=#{value};-->
+<!--    </update>-->
+</mapper>
+
